@@ -1,0 +1,384 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Castilla - Lenguaje de programación en español</title>
+    <link rel="stylesheet" type="text/css" href="estilo.css">
+</head>
+<body>
+
+<h1>Castilla <small style="color:#AAA;">1.0</small></h1>
+<h2>Lenguaje de programación en español</h2>
+
+<hr>
+
+<p>
+    <b>Castilla</b> es un lenguaje de programación que trata de llenar un vacío en el mundo 
+    de habla hispana donde los lenguajes son muy escasos y con poca aceptación.  La primera 
+    pregunta que encontraremos es: por qué un lenguaje de programación en español? 
+    Y la respuesta simplemente es porque nos da la gana.  Con más de 300 millones de hispano 
+    parlantes en el mundo creo que existe la posibilidad de llenar ese vacío.
+</p>
+
+<!--more-->
+
+<p>
+    Conjuntamente con Castilla, se desarrollará un compilador en inglés llamado London y un 
+    traductor llamado Babel, para poder traducir los programas de Español a Inglés y viceversa, 
+    sin pérdida de fidelidad.
+</p>
+
+<p>Veamos a continuación la sintaxis del lenguaje:</p>
+
+<h3>Mostrar información en cónsola</h3>
+<pre>
+<b>di</b> 'Hola'
+
+nombre = 'Camila'
+<b>di</b> 'Hola {nombre}, como estás?'             <i>-- reemplazo de variables en contexto</i>
+<b>di</b> 'Mi nombre es '+ nombre +' y el tuyo?'   <i>-- concatenación</i>
+<b>di</b> 'Hasta luego'
+</pre>
+
+<h3>Comentarios</h3>
+<pre>
+<i>-- Comentarios al inicio de la linea</i>
+<b>di</b> 'Hola'
+<b>di</b> 'Como estás?'   <i>-- Comentarios al final de la linea</i>
+
+<i>---- 
+Comentarios de lineas multiples
+Usar cuadruple guión al inicio y al final
+Buenos para encabezados de programa, clase o función
+----</i>
+<b>di</b> 'Hola'
+<b>di</b> 'Me encanta este lenguaje'
+<b>di</b> 'Es muy fácil de aprender!'
+
+<i>----------------------------------------------------------------------
+El comando 'di' agrega separador de lineas al final del texto
+a menos que se especifique continuación de linea con +
+----------------------------------------------------------------------</i>
+<b>di</b> 'Esto va '+
+<b>di</b> 'en la misma '+
+<b>di</b> 'linea'
+</pre>
+
+<h3>Definición y asignación de variables</h3>
+<pre>
+nombre = 'Carolina'             <i>-- Texto</i>
+altura = 178                    <i>-- Entero</i>
+peso   = 54.25                  <i>-- Decimal</i>
+fecha  = 20101231.235959F       <i>-- Fecha: Año nuevo 2011</i>
+color  = 0x0022CC               <i>-- Hexadecimal</i>
+
+<b>di</b> 'Hola {nombre}, nacistes el {fecha|dia dd/mm/yy}'
+<b>di</b> 'Tu altura es {altura|num 3} y tu peso es {peso|num 3.2} kgs'
+
+<i>-- Conversiones de tipo</i>
+edad  = 15.texto                     <i>-- convierte entero a texto</i>
+area  = '123.45'.entero              <i>-- convierte texto a entero</i>
+peso  = '123.4567'.real(2)           <i>-- convierte texto a real con dos decimales</i>
+largo = 123.45.texto                 <i>-- convierte real a texto</i>
+ancho = (456/123).texto              <i>-- convierte resultado real a texto</i>
+alto  = (456/123).entero.texto       <i>-- convierte resultado real a entero y texto</i>
+ayer  = '2012/12/31'.fecha           <i>-- convierte texto a fecha</i>
+hoy   = '2012/12/31 23:59:59'.fecha  <i>-- convierte texto a fecha</i>
+</pre>
+
+<!--
+<i>-- Conversiones de medida</i>
+mt % 100 % cm
+auto1 = 3.5mt
+auto2 = 380cm
+total = auto1+auto2 : mt       <i>-- 8.3mt</i>
+total = auto1+auto2 : cm       <i>-- 830cm</i>
+-->
+
+<h3>Listas y Diccionarios</h3>
+<pre>
+<i>-- Las listas son agrupaciones de elementos simples</i>
+lista = ['Lunes','Martes','Miércoles']
+<b>di</b> lista[1]                     <i>-- Lunes</i>
+<b>di</b> lista.último                 <i>-- Miércoles, último elemento</i>
+<b>di</b> lista.cuantos                <i>-- 3</i>
+lista.agregar('Jueves')
+lista.eliminar.primero
+lista.eliminar.último
+lista.eliminar.todos
+
+lista+['Viernes','Sábado']      <i>-- agregar elementos al final de la lista</i>
+lista-['Lunes']                 <i>-- eliminar elemento de la lista </i>
+
+<i>-- Los diccionarios son listas de elementos dobles</i>
+<i>-- donde el primer elemento es el indice y el segundo el contenido</i>
+paises = ['españa':'madrid', 'italia':'roma', 'francia':'paris']
+paises.agregar('alemania':'berlin','inglaterra':'londres')
+paises+['portugal':'lisboa']    <i>-- agregar al diccionario</i>
+paises-['inglaterra']           <i>-- eliminar elemento por indice</i>
+
+<i>-- Algunas funciones de lista:</i>
+autos = ['toyota','mazda','fiat','seat','ford']
+autos.cuantos           <i>-- 5</i>
+autos.contiene('mazda') <i>-- si</i>
+autos.menor             <i>-- fiat</i>
+autos.mayor             <i>-- toyota</i>
+autos.primero           <i>-- toyota</i>
+autos.ultimo            <i>-- ford</i>
+<i>-- asi como ordenar, sumar, promediar, agregar, eliminar, etc</i>
+</pre>
+
+<h3>Objetos complejos</h3>
+<pre>
+Sexo := [Femenino:0, Masculino:1]  <i>-- Enumeración constante</i>
+
+persona = [
+    nombre: 'Julieta'
+    edad  : 18
+    sexo  : Sexo.Femenino
+    teléfonos : [
+        casa    : '555-1234'
+        oficina : '666-1234'
+        móvil   : '777-1234'
+    ]
+    mascotas: ['chicle','gatico','caramelo']
+]
+
+<i>-- elementos separados por lineas son separados por comas por el compilador</i>
+<i>-- mucho mas fácil de agregar o reordenar elementos en una lista</i>
+
+<b>di</b> persona.nombre
+<b>di</b> persona.telefonos.móvil
+<b>di</b> persona.mascotas.1
+<b>di</b> persona.mascotas[1]
+
+<i>-- En castilla usamos corchetes [] para denotar listas y diccionarios, </i>
+<i>-- pero pueden ser intercambiados por llaves para hacerlos mas parecidos a JSON</i>
+
+</pre>
+
+<h3>Ciclos y repeticiones</h3>
+<pre>
+<b>de</b> 10:
+    <b>di</b> 'Hola'
+
+<b>de</b> 1 <b>a</b> 10:
+    <b>di</b> 'Hola'
+
+<b>de</b> 1 <b>a</b> 10 <b>en</b> n:
+    <b>di</b> 'Número {n}'
+
+<b>de</b> 10 <b>a</b> 1 <b>en</b> n:
+    <b>di</b> 'En reverso {n}'
+
+<b>de</b> 1 <b>a</b> 10 <b>por</b> 2 <b>en</b> n:
+    <b>di</b> 'Número par: {n}'
+
+colores = ['amarillo','azul','rojo']
+<b>de</b> colores <b>en</b> color:
+    <b>di</b> 'Color primario: {color}'
+
+paises = ['españa':'madrid','italia':'roma','francia':'paris']
+<b>de</b> paises <b>en</b> pais,capital:
+    <b>di</b> 'La capital de {pais} es {capital}'
+
+<i>-- diccionarios pueden accesar indice, valor y contador en ese orden</i>
+paises = ['españa':'madrid','italia':'roma','francia':'paris']
+<b>de</b> paises <b>en</b> pais,capital,n:
+    <b>di</b> 'Pais #{n} es {pais} y su capital es {capital}'
+</pre>
+
+
+<h3>Condiciones y Casos</h3>
+<pre>
+marca  = 'Ford'
+modelo = 'Pinto'
+precio = €1500
+año    = 1998
+
+<b>es</b> año&gt;2000 <b>y</b> precio&lt;€9000 <b>o</b> marca='Mercedes'?
+<b>si</b>:
+    <b>di</b> 'Ese auto si es lindo'
+<b>no</b>:
+    <b>di</b> 'Auto muy viejo o caro, no me gusta'
+
+<i>-- podemos suprimir el 'si' despues de la condicion, depende de los gustos:</i>
+<b>es</b> año&gt;2000 <b>y</b> precio&lt;€9000 <b>o</b> marca='Mercedes'?
+    <b>di</b> 'Ese auto si es lindo'
+<b>no</b>:
+    <b>di</b> 'Auto muy viejo o caro, no me gusta'
+
+<i>-- Condición ternaria</i>
+marca = es modelo='Corola' ? 'Toyota' no: 'Otro' 
+di marca        <i>-- Otro</i>
+
+<i>-- Casos múltiples</i>
+edad = 18
+
+<b>caso</b> edad&lt;10:
+    <b>di</b> 'Niño'
+<b>caso</b> edad&lt;20:
+    <b>di</b> 'Joven'
+<b>caso</b> edad&lt;80:
+    <b>di</b> 'Adulto'
+<b>otro</b>:
+    <b>di</b> 'Anciano'
+
+</pre>
+
+<h3>Funciones</h3>
+<pre>
+saludar(nombre):
+    <b>di</b> 'Hola {nombre}'
+
+saludar('Camila')   <i>-- Hola Camila</i>
+
+sumar(lista):
+    total = 0
+    <b>de</b> lista <b>en</b> num:
+        total+num
+    <b>da</b> total
+
+suma = sumar([1,2,3,4,5,6])
+<b>di</b> suma      <i>-- 21</i>
+</pre>
+
+<h3>Tipos y Clases</h3>
+<pre>
+<i>-- Podemos definir el tipo de un objeto con anterioridad</i>
+autos tipo lista[T]     <i>-- T:texto E:entero R:Real F:fecha B:binario H:hex V:variado</i>
+autos = ['toyota','mazda','fiat','seat','ford']
+
+<i>-- Clases son definidas con atributos y verbos como metodos</i>
+<i>-- Preferiblemente en mayúsculas y denotando sujetos o cosas</i>
+Auto:
+    marca  := 'Toyota'      <i>-- constante</i>
+    modelo := 'Corola'      <i>-- constante</i>
+    color  :  'Rojo'        <i>-- variable</i>
+    sucio- :   no           <i>-- variable privada</i>
+    ruedas :   4
+    prender:
+        <b>di</b> 'run ruuun'
+    manejar:
+        mi.sucio = si
+    lavar:
+        mi.sucio = no
+        <b>di</b> 'estoy limpio'
+    pintar(color):
+        mi.color = color
+
+auto = Auto.nuevo
+auto.prender.manejar        <i>-- podemos concatenar métodos</i>
+auto.lavar                  <i>-- métodos sin argumentos no requieren paréntesis</i>
+auto.pintar('azul')
+
+<i>-- Extensibilidad</i>
+Camión tipo Auto:
+    capacidad := 5ton
+    largo := 10mt
+    lleno-: no
+    cargar:
+        mi.lleno = si
+        <b>di</b> 'Camión lleno'
+    vaciar:
+        mi.lleno = no
+        <b>di</b> 'Camión vacio'
+    nuevo(ruedas):
+        mis.ruedas = ruedas
+
+camión = Camión.nuevo(6)
+camión.cargar               <i>-- Camión lleno</i>
+camión.vaciar               <i>-- Camión vacio</i>
+</pre>
+
+<h3>Módulos y Librerías</h3>
+<pre>
+<i>-- archivos de librerías internas y externas pueden ser incluidos</i>
+<b>usa</b> matemáticas en global
+<b>di</b> seno(10) * coseno(20) + tangente(50)
+<b>di</b> hipotenusa(20,30)    <i>-- 36.06</i>
+
+<b>usa</b> sistema, cifrado y azar
+<b>di</b> sistema.nombre       <i>-- linux</i>
+<b>di</b> cifrado.MD5('mi clave secreta')
+<b>di</b> azar.entero(100)     <i>-- 42     cualquier numero entre 0 y 100</i>
+<b>di</b> azar.decimal(4)      <i>-- 0.1234 cualquier numero entre 0 y 1 con N decimales</i>
+</pre>
+
+<h3>Errores y Excepciones</h3>
+<pre>
+<i>-- Hay dos formas de detectar problemas: con captura de errores o con bloques de excepciones</i>
+
+<i>-- Captura de errores</i>
+saludar(nombre):
+    <b>di</b> 'Hola ' + nombre.mayúscula   |  error 'Nombre debe ser texto'
+
+saludar(123)                        |  di error
+
+sumar(a,b):
+    total = a+b                     | error 'montos deben ser numericos'
+    da total
+
+num = sumar(123,'abc')              |  num = 0
+di num                              <i>-- num es 0 debido al error</i>
+
+<i>-- Bloques de excepción</i>
+sumar(a,b):
+    da a+b
+
+hacer:
+    c = sumar(1,2)
+    d = sumar('a',4)
+error:
+    di 'No se puede sumar texto'
+salir:
+    c = 0
+    d = 0
+
+</pre>
+
+<!--
+<h3>Concurrencia y Paralelismo</h3>
+<pre>
+<b>ir</b> calcularPrimos(100000) <b>en</b> verResultados
+
+calcularPrimos(n):
+    lista = [1..n]
+    primos = lista.primos
+    <b>da</b> primos
+
+verResultados(lista):
+    <b>di</b> lista
+</pre>
+-->
+
+<h3>Desarrollo Web</h3>
+<pre>
+<b>usa</b> web <b>y</b> modelos
+
+inicio(sol,pag):        <i>-- métodos web reciben solicitud y respuesta como parámetros</i>
+    pag.mostrar('&lt;h1&gt;Hola web&lt;/h1&gt;')
+
+verClientes(sol,pag):
+    lista  = modelos.listaClientes   <i>-- lista de clientes desde la base de datos</i>
+    pag.mostrar('{% de lista en cliente %}&lt;li&gt;{cliente}&lt;/li&gt;{% fin %}')
+
+noExiste(sol,pag):
+    pag.mostrar('&lt;pre&gt;404 - La página {sol.ruta} no existe&lt;/pre&gt;')
+
+web.rutas = [
+    '/'         : inicio 
+    '/clientes' : verClientes 
+    '*'         : noExiste
+]
+
+web.servir()
+
+</pre>
+
+<p>Todavía hay algunos detalles y ambiguedades que resolver pero en general esta es la idea y sus conceptos principales.</p>
+<p>Eso es todo. Esperamos que les haya gustado el lenguaje de programación <b>Castilla</b>.</p>
+<p>Gracias por su atención</p>
+
+</body>
+</html>
